@@ -82,7 +82,7 @@ viewPieChart items colors =
   in
     svg
       [ viewBox "0 0 63.6619772368 63.6619772368" , width "300px" ]
-      (List.map (\fanShape -> viewFanShape fanShape) fanShapes)
+      (List.map viewFanShape fanShapes)
       
 viewFanShape : FanShape -> Html Msg
 viewFanShape fanShape =
