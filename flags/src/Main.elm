@@ -11,12 +11,28 @@ main =
     , subscriptions = subscriptions
     }
 
-init : Int -> ( Model, Cmd msg )
+-- INIT
+
+init : Flags -> ( Model, Cmd msg )
 init flags =
-  ( { num = flags }, Cmd.none )
+  ( { greeting = flags.greeting
+    , times = flags.times
+    }
+  , Cmd.none
+  )
+
+type alias Flags =
+  { greeting : String
+  , times : Int
+  }
+
+-----
+
 
 type alias Model =
-  { num : Int }
+  { greeting : String
+  , times : Int
+  }
 
 type Msg
   = NoMessage
@@ -28,7 +44,7 @@ update msg model =
 view : Model -> Html Msg
 view model =
   div [] <|
-    List.repeat model.num <| div [] [ text "Hello World!" ]
+    List.repeat model.times <| div [] [ text model.greeting ]
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
