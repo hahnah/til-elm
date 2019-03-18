@@ -11,7 +11,7 @@ Tiny projects of what I learned about Elm.
 
 hahnah
 
-+ WebSite: [Hahnah's Toybox](https://superhahnah.com)
++ WebSite: [Super Hahnah](https://superhahnah.com)
 + Twitter: [@superhahnah](https://twitter.com/superhahnah)
 
 ## License
