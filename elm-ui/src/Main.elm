@@ -1,10 +1,11 @@
 module Main exposing (main)
 
 import Channel exposing (Channel)
-import Element exposing (Element, alignLeft, alignTop, column, el, fill, height, layout, paddingXY, rgb, row, spacingXY, text, width)
+import Element exposing (Element, alignBottom, alignLeft, alignTop, column, el, fill, height, layout, none, paddingXY, px, rgb, row, spacingXY, text, width)
 import Element.Background as Background
 import Element.Border as Border
 import Element.Font as Font
+import Element.Input as Input
 import Html exposing (Html)
 
 
@@ -62,10 +63,12 @@ viewChat channel =
     column
         [ alignTop
         , width fill
+        , height fill
+        , paddingXY 20 5
         ]
         [ viewChatHeader channel
         , viewChatBody channel
-        , viewChatFooter
+        , viewChatFooter channel
         ]
 
 
@@ -83,9 +86,20 @@ viewChatHeader channel =
 
 viewChatBody : Channel -> Element msg
 viewChatBody channel =
-    Debug.todo "Chat Message"
+    none
 
 
-viewChatFooter : Element msg
-viewChatFooter =
-    Debug.todo "Add input"
+viewChatFooter : Channel -> Element msg
+viewChatFooter channel =
+    el
+        [ alignBottom
+        , width fill
+        , height <| px 30
+        , paddingXY 5 5
+        , Border.width 2
+        , Border.rounded 8
+        , Border.color <| rgb 0.8 0.8 0.8
+        , Font.color <| rgb 0.8 0.8 0.8
+        , Font.size 15
+        ]
+        (text <| "Type message to  " ++ Channel.toString channel)
