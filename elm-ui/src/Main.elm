@@ -40,7 +40,11 @@ viewChannels channels =
             [ False, True, False, False, False ]
     in
     column
-        [ alignLeft, height fill, Background.color (rgb 0.8 0.3 0.6), Font.color (rgb 1 1 1) ]
+        [ alignLeft
+        , height fill
+        , Background.color <| rgb 0.8 0.3 0.6
+        , Font.color (rgb 1 1 1)
+       ]
         (List.map2 viewChannel channels channelSelection)
 
 
