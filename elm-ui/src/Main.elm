@@ -1,12 +1,18 @@
 module Main exposing (main)
 
 import Channel exposing (Channel)
-import Element exposing (Element, alignBottom, alignLeft, alignTop, column, el, fill, height, layout, none, paddingXY, px, rgb, row, spacingXY, text, width)
+import Element exposing (Element, alignBottom, alignLeft, alignTop, column, el, fill, height, layout, none, paddingXY, px, rgb, row, spacing, spacingXY, text, width)
 import Element.Background as Background
 import Element.Border as Border
 import Element.Font as Font
 import Element.Input as Input
 import Html exposing (Html)
+
+
+type alias ChatMessage =
+    { speaker : String
+    , message : String
+    }
 
 
 main : Html msg
@@ -44,7 +50,7 @@ viewChannels channels =
         , height fill
         , Background.color <| rgb 0.8 0.3 0.6
         , Font.color (rgb 1 1 1)
-       ]
+        ]
         (List.map2 viewChannel channels channelSelection)
 
 
@@ -90,7 +96,28 @@ viewChatHeader channel =
 
 viewChatBody : Channel -> Element msg
 viewChatBody channel =
-    none
+    let
+        chatLog : List ChatMessage
+        chatLog =
+            [ ChatMessage "hahnah" "testestest"
+            , ChatMessage "hahnah" "Let's talk about Elm events!"
+            , ChatMessage "whoami" "Yoooooooooooooooo Hoooooooooooooooo"
+            , ChatMessage "hoge" "hoge hoge"
+            , ChatMessage "elmo" "CSS and HTML are actually quite difficult to use when you're trying to do the layout and styling of a web page. This library is a complete alternative to HTML and CSS. Basically you can just write your app using this library and (mostly) never have to think about HTML and CSS again. The high level goal of this library is to be a design toolkit that draws inspiration from the domains of design, layout, and typography, as opposed to drawing from the ideas as implemented in CSS and HTML."
+            ]
+    in
+    column
+        [ spacing 10, Element.clipX, width fill ]
+        (List.map viewChatMessage chatLog)
+
+
+viewChatMessage : ChatMessage -> Element msg
+viewChatMessage chatMessage =
+    column
+        [ spacing 3 ]
+        [ el [ Font.bold ] <| text chatMessage.speaker
+        , Element.paragraph [] [ el [] <| text chatMessage.message ]
+        ]
 
 
 viewChatFooter : Channel -> Element msg
