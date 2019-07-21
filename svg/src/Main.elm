@@ -3,8 +3,7 @@ module Main exposing (main)
 import Browser
 import Html exposing (Html, div, img)
 import Html.Attributes exposing (src, style, width)
--- import Svg exposing (Svg)
--- import Svg.Attributes exposing (fill)
+import Logo
 
 
 main : Program () Model Msg
@@ -37,10 +36,5 @@ update msg model =
 view : Model -> Html Msg
 view model =
     div []
-        [ img
-            [ src "../assets/color-stew.svg"
-            , width 300
-            , style "background-color" "#bbefef"
-            ]
-            []
+        [ Logo.logo
         ]
