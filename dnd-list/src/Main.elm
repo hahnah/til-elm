@@ -58,10 +58,6 @@ subscriptions model =
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update message model =
-    let
-        _ =
-            Debug.log "aaaaa"
-    in
     case message of
         MyMessage dndMsg ->
             let
